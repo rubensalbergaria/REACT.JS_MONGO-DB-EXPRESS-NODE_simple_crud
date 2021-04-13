@@ -8,7 +8,7 @@ const FoodModel = require("./models/Food");
 app.use(express.json());
 app.use(cors());
 
-mongoose.connect('mongodb+srv://rubensalbergaria:Galodoido84@crud.gonva.mongodb.net/food?retryWrites=true&w=majority', {
+mongoose.connect('mongodb+srv://rubensalbergaria:@crud.gonva.mongodb.net/food?retryWrites=true&w=majority', {
   //COLOCAR PASSWORD APÓS rubensalbergaria e o nome da database após net/
   useNewUrlParser: true,
   useUnifiedTopology: true, //recomendado pelo terminal por se tratar de versao que ficará deprecada
