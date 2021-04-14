@@ -29,6 +29,28 @@ app.post("/insert", async (req, res) => {
   }
 })
 
+app.put("/update", async (req, res) => {
+  const newFoodName = req.body.newFoodName;
+  const id = req.body.id;
+
+  try {
+    await FoodModel.findById(id, (err, updatedFood) => { //a função findById é do proprio mongoose
+      updatedFood.foodName = newFoodName
+      updatedFood.save();
+      res.send("Updated")
+    })
+  } catch (err) {
+    console.log(err)
+  }
+})
+
+app.delete("/delete/:id", async (req, res) => { //recebendo o id pelo proprio browser, nao pode passar via objeto do front pro back
+  const id = req.params.id
+  
+  await (await FoodModel.findByIdAndRemove(id)).execPopulate(); //findByIdAndDelete é outra função do proprio mongoose
+  res.send('deleted');
+})
+
 
 app.get("/read", async (req, res) => {
   FoodModel.find({}, (err, result) => {
